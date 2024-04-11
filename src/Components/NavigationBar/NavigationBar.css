@@ -1,0 +1,28 @@
+.primary-navigation {
+    position: relative;
+    list-style: none;
+    gap: var(--gap);
+    padding: var(--padding);
+
+    background-color: var(--theme-color);
+}
+
+.nav-link {
+    text-decoration: none;
+    color: #fff;
+}
+
+.active-nav-link {
+    text-decoration: underline;
+}
+
+.nav-bar-icon {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+}
+
+.nav-bar-icon > a > svg {
+    font-size: 24px;
+    color: #fff;
+}
