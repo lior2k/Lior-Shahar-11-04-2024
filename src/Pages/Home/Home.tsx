@@ -11,12 +11,15 @@ import { DailyForecast } from '../../Interfaces';
 const Home = () => {
     const weather = useWeather();
 
-    const dailyForecast = weather.forecast.DailyForecasts[0];
-    const minTemperature = dailyForecast.Temperature.Minimum.Value;
-    const maxTemperature = dailyForecast.Temperature.Maximum.Value;
-    const temperatureUnit = dailyForecast.Temperature.Maximum.Unit;
+    const dailyForecast = weather.forecast?.DailyForecasts[0];
+    const minTemperature = dailyForecast?.Temperature.Minimum.Value;
+    const maxTemperature = dailyForecast?.Temperature.Maximum.Value;
+    const temperatureUnit = dailyForecast?.Temperature.Maximum.Unit;
 
-    const averageTemperature = (minTemperature + maxTemperature) / 2;
+    let averageTemperature;
+    if (minTemperature && maxTemperature) {
+        averageTemperature = (minTemperature + maxTemperature) / 2;
+    }
 
     return (
         <div className='page-wrapper'>
@@ -50,14 +53,14 @@ const Home = () => {
 
                     <div className='component-wrapper'>
                         <h1 style={{ textAlign: 'center' }}>
-                            {weather.forecast.Headline.Text}
+                            {weather.forecast?.Headline.Text}
                         </h1>
                     </div>
 
                     <div className='component-wrapper flex cards-wrapper'>
-                        {weather.forecast.DailyForecasts.map(
-                            (dailyForecast: DailyForecast) => (
-                                <Card forecast={dailyForecast} />
+                        {weather.forecast?.DailyForecasts.map(
+                            (dailyForecast: DailyForecast, index: number) => (
+                                <Card forecast={dailyForecast} key={index} />
                             )
                         )}
                     </div>
