@@ -1,0 +1,8 @@
+.top-section {
+    justify-content: space-between;
+}
+
+.cards-wrapper {
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}

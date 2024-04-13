@@ -1,0 +1,6 @@
+.card-wrapper {
+    border-radius: var(--border-radius);
+    border: 1px solid var(--grey);
+    background-color: var(--theme-color-020);
+    flex: 1;
+}

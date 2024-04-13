@@ -2,6 +2,7 @@ import './App.css';
 import Home from './Pages/Home/Home';
 import Favorites from './Pages/Favorites/Favorites';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import WeatherProvider from './Context/WeatherProvider';
 
 const router = createBrowserRouter([
     { path: '/', element: <Home /> },
@@ -9,7 +10,11 @@ const router = createBrowserRouter([
 ]);
 
 const App = () => {
-    return <RouterProvider router={router} />;
+    return (
+        <WeatherProvider>
+            <RouterProvider router={router} />
+        </WeatherProvider>
+    );
 };
 
 export default App;

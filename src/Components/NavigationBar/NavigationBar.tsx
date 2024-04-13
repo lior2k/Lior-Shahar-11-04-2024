@@ -13,50 +13,44 @@ const NavigationBar: React.FC = () => {
 
     return (
         <header>
-            <div>
-                <nav>
-                    <ul
-                        data-visible={isNavOpen}
-                        className='flex primary-navigation'
-                    >
-                        <li>
-                            <Link
-                                to='/'
-                                className={`nav-link ${
-                                    isActive('/') ? 'active-nav-link' : ''
-                                }`}
-                            >
-                                Home
-                            </Link>
-                        </li>
-                        <li>
-                            <Link
-                                to='/favorites'
-                                className={`nav-link ${
-                                    isActive('/favorites')
-                                        ? 'active-nav-link'
-                                        : ''
-                                }`}
-                            >
-                                Favorites
-                            </Link>
-                        </li>
+            <nav>
+                <ul
+                    data-visible={isNavOpen}
+                    className='flex primary-navigation'
+                >
+                    <li>
+                        <Link
+                            to='/'
+                            className={`nav-link ${
+                                isActive('/') ? 'active-nav-link' : ''
+                            }`}
+                        >
+                            Home
+                        </Link>
+                    </li>
+                    <li>
+                        <Link
+                            to='/favorites'
+                            className={`nav-link ${
+                                isActive('/favorites') ? 'active-nav-link' : ''
+                            }`}
+                        >
+                            Favorites
+                        </Link>
+                    </li>
 
-                        <li className='nav-bar-icon'>
-                            <Link
-                                to='/'
-                                className={`nav-link ${
-                                    isActive('/favorites')
-                                        ? 'active-nav-link'
-                                        : ''
-                                }`}
-                            >
-                                <Icon icon='arcticons:weather-forecast'></Icon>
-                            </Link>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
+                    <li className='nav-bar-icon'>
+                        <Link
+                            to='/'
+                            className={`nav-link ${
+                                isActive('/favorites') ? 'active-nav-link' : ''
+                            }`}
+                        >
+                            <Icon icon='arcticons:weather-forecast'></Icon>
+                        </Link>
+                    </li>
+                </ul>
+            </nav>
         </header>
     );
 };

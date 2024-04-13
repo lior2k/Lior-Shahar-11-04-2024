@@ -2,19 +2,24 @@
 body {
     --gap: 16px;
     --padding: 16px;
+    --border-radius: 8px;
 
-    --theme-color: #748cf1;
-    --theme-color-005: rgba(64, 95, 242, 0.05);
-    --theme-color-020: rgba(64, 95, 242, 0.2);
-    --theme-color-040: rgba(64, 95, 242, 0.4);
-    --theme-color-060: rgba(64, 95, 242, 0.6);
-    --theme-color-080: rgba(64, 95, 242, 0.8);
+    --theme-color: rgb(116, 140, 241);
+    --theme-color-005: rgba(116, 140, 241, 0.05);
+    --theme-color-020: rgba(116, 140, 241, 0.2);
+    --theme-color-040: rgba(116, 140, 241, 0.4);
+    --theme-color-060: rgba(116, 140, 241, 0.6);
+    --theme-color-080: rgba(116, 140, 241, 0.8);
 
     --second-color: #050b20;
     --second-color-050: rgba(5, 11, 32, 0.5);
 
     --grey: rgb(191, 190, 190);
     --light-grey: rgb(233, 233, 233);
+
+    --main-content-max-width: 1200px;
+
+    color: #fff;
 }
 
 /* css reset */
@@ -39,4 +44,50 @@ img {
 
 .flex {
     display: flex;
+    gap: var(--gap);
+}
+
+.column {
+    flex-direction: column;
+}
+
+.align-center {
+    align-items: center;
+}
+
+.wrap-content {
+    max-width: max-content;
+    max-height: max-content;
+}
+
+.component-wrapper {
+    padding: var(--padding);
+    margin: 16px;
+}
+
+.main-content {
+    position: relative;
+    border: 1px solid var(--grey);
+    border-radius: var(--border-radius);
+    max-width: var(--main-content-max-width);
+    margin: 0 auto;
+}
+
+.main-content::before {
+    content: '';
+    background: url('../public/weatherBG3.jpg') no-repeat;
+    background-size: cover;
+    background-position: center center;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    left: 0px;
+    bottom: 0;
+    /* opacity: 0.5; */
+    z-index: -50;
+    border-radius: var(--border-radius);
+}
+
+.icon {
+    font-size: 24px;
 }
