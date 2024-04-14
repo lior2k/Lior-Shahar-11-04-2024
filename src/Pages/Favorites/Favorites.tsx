@@ -15,12 +15,15 @@ const Favorites = () => {
     };
 
     return (
-        <div className='page-wrapper'>
+        <>
             <NavigationBar />
 
             <main>
                 {Object.keys(weather.favoriteLocations).length && (
-                    <div className='component-wrapper flex cards-wrapper main-content'>
+                    <div
+                        className='component-wrapper flex cards-wrapper main-content'
+                        style={{ marginBlockStart: '105px' }}
+                    >
                         {Object.keys(weather.favoriteLocations).map(
                             (locationKey: string, index: number) => (
                                 <FavoriteCard
@@ -37,7 +40,7 @@ const Favorites = () => {
                     </div>
                 )}
             </main>
-        </div>
+        </>
     );
 };
 

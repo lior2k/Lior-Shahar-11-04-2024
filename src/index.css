@@ -69,10 +69,11 @@ img {
     position: relative;
     border: 1px solid var(--grey);
     border-radius: var(--border-radius);
-    max-width: var(--main-content-max-width);
+    max-width: 90vw;
+    min-height: 75vh;
+    /* flex: 1; */
     margin-inline: auto;
-
-    animation: slide-up 1s cubic-bezier(0.075, 0.82, 0.165, 1);
+    animation: slide-up 2s cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 
 .main-content::before {
