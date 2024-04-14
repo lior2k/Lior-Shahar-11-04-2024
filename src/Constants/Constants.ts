@@ -2,10 +2,10 @@ export const AccuWeatherAPIKey = 'AqYB3lVwL5ayzsCZDcKszPO4gfE7uGmm';
 
 export const URLS = {
     LOCATION_AUTO_COMPLETE:
-        'http://dataservice.accuweather.com/locations/v1/cities/autocomplete',
-    CURRENT_WEATHER: 'http://dataservice.accuweather.com/currentconditions/v1',
+        'https://dataservice.accuweather.com/locations/v1/cities/autocomplete',
+    CURRENT_WEATHER: 'https://dataservice.accuweather.com/currentconditions/v1',
     FIVE_DAY_FORECAST:
-        'http://dataservice.accuweather.com/forecasts/v1/daily/5day',
+        'https://dataservice.accuweather.com/forecasts/v1/daily/5day',
 };
 
 export const HTTP_RESPONSE_CODE = {
