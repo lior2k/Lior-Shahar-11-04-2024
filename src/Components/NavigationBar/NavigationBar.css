@@ -38,7 +38,7 @@
         inset: 0 0 0 50%;
 
         flex-direction: column;
-        padding: min(20vh, 7.5rem) var(--padding);
+        padding: min(30vh, 120px) var(--padding);
         gap: var(--gap);
         background: hsl(0 0 100% / 0.5);
 
@@ -69,9 +69,9 @@
 
     .nav-bar-icon {
         position: absolute;
-        top: 16px;
+        top: 32px;
         right: auto;
-        left: 16px;
+        left: 32px;
     }
     .nav-bar-icon > a > svg {
         color: var(--second-color);
