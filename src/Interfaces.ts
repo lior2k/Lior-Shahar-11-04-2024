@@ -1,5 +1,5 @@
 // interface for the autocomplete endpoint
-export interface Location {
+export interface ILocation {
     Version: number;
     Key: string;
     Type: string;
@@ -16,7 +16,7 @@ export interface Location {
 }
 
 // interfaces for the current weather endpoint
-export interface CurrentWeather {
+export interface ICurrentWeather {
     LocalObservationDateTime: string;
     EpochTime: number;
     WeatherText: string;
@@ -83,7 +83,7 @@ export interface DailyForecast {
     Link: string;
 }
 
-export interface Forecast {
+export interface IForecast {
     Headline: Headline;
     DailyForecasts: DailyForecast[];
 }

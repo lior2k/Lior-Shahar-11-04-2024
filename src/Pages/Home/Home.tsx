@@ -2,24 +2,34 @@ import './Home.css';
 import NavigationBar from '../../Components/NavigationBar/NavigationBar';
 import SearchBar from '../../Components/SearchBar/SearchBar';
 import Card from '../../Components/Card/Card';
+import { Icon } from '@iconify/react';
 
+import { useState, useEffect } from 'react';
 import { useWeather } from '../../Hooks/useWeather';
 
-import { Icon } from '@iconify/react';
 import { DailyForecast } from '../../Interfaces';
 
 const Home = () => {
     const weather = useWeather();
+    const [isSaved, setIsSaved] = useState<boolean>(false);
 
-    const dailyForecast = weather.forecast?.DailyForecasts[0];
-    const minTemperature = dailyForecast?.Temperature.Minimum.Value;
-    const maxTemperature = dailyForecast?.Temperature.Maximum.Value;
-    const temperatureUnit = dailyForecast?.Temperature.Maximum.Unit;
+    useEffect(() => {
+        setIsSaved(
+            weather.favoriteLocations.hasOwnProperty(
+                weather.currentLocation?.Key as string
+            )
+        );
+    }, [weather]);
 
-    let averageTemperature;
-    if (minTemperature && maxTemperature) {
-        averageTemperature = (minTemperature + maxTemperature) / 2;
-    }
+    const handleFavoritesToggle = () => {
+        if (!weather.currentLocation) return;
+        if (isSaved) {
+            weather.removeFavoriteLocation(weather.currentLocation.Key);
+        } else {
+            weather.saveFavoriteLocation(weather.currentLocation);
+        }
+        setIsSaved(!isSaved);
+    };
 
     return (
         <div className='page-wrapper'>
@@ -35,17 +45,33 @@ const Home = () => {
                                 <span>
                                     {weather.currentLocation?.LocalizedName}
                                 </span>
-                                <span>
-                                    {averageTemperature} {temperatureUnit}
-                                </span>
+                                {weather.currentWeather &&
+                                    weather.currentWeather.Temperature && (
+                                        <span>
+                                            {weather.currentWeather.Temperature
+                                                .Metric.Value +
+                                                ' ' +
+                                                weather.currentWeather
+                                                    .Temperature.Metric.Unit}
+                                        </span>
+                                    )}
                             </div>
                         </div>
-                        <div>
+                        <div
+                            className='text-glow'
+                            onClick={() => handleFavoritesToggle()}
+                        >
                             <span className='flex align-center'>
-                                Save to Favorites
+                                {isSaved
+                                    ? 'Remove from Favorites'
+                                    : 'Save to Favorites'}
                                 <Icon
-                                    icon='mdi:heart-outline'
-                                    className='icon'
+                                    icon={
+                                        isSaved
+                                            ? 'mdi:heart'
+                                            : 'mdi:heart-outline'
+                                    }
+                                    className='icon pulse'
                                 />
                             </span>
                         </div>

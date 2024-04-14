@@ -70,7 +70,9 @@ img {
     border: 1px solid var(--grey);
     border-radius: var(--border-radius);
     max-width: var(--main-content-max-width);
-    margin: 0 auto;
+    margin-inline: auto;
+
+    animation: slide-up 1s cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 
 .main-content::before {
@@ -83,11 +85,60 @@ img {
     right: 0px;
     left: 0px;
     bottom: 0;
-    /* opacity: 0.5; */
+    opacity: 1;
+    /* filter: blur(1px); */
     z-index: -50;
     border-radius: var(--border-radius);
 }
 
 .icon {
     font-size: 24px;
+}
+
+.glow {
+    cursor: pointer;
+    transition: all 0.25s ease-in-out;
+}
+
+.glow:hover {
+    border-color: var(--theme-color);
+    background-color: var(--theme-color-040);
+}
+
+.text-glow {
+    cursor: pointer;
+    transition: text-shadow 0.25s ease-in-out;
+}
+
+.text-glow:hover {
+    /* color: var(--theme-color); */
+    text-shadow: #fff 1px 0 10px;
+}
+
+.pulse:hover {
+    animation-name: pulse;
+    animation-duration: 1s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+
+@keyframes pulse {
+    0% {
+        scale: 1;
+    }
+    50% {
+        scale: 1.25;
+    }
+    100% {
+        scale: 1;
+    }
+}
+
+@keyframes slide-up {
+    0% {
+        transform: translateY(400%);
+    }
+    100% {
+        transform: translateY(0);
+    }
 }

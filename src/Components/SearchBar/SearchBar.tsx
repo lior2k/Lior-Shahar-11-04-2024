@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react';
 import './SearchBar.css';
-import { Location } from '../../Interfaces';
+import { ILocation } from '../../Interfaces';
 import { WeatherService } from '../../Services/WeatherService';
 import { useWeather } from '../../Hooks/useWeather';
 
 const SearchBar = () => {
     const [searchParam, setSearchParam] = useState<string>('');
-    const [locations, setLocations] = useState<Location[]>([]);
+    const [locations, setLocations] = useState<ILocation[]>([]);
     const weather = useWeather();
 
     useEffect(() => {
@@ -15,13 +15,11 @@ const SearchBar = () => {
 
     const handleSearch = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        const data = await WeatherService.fetchLocation(locations);
-        if (!data) {
-            return;
-        }
-        weather.setCurrentLocation(data.location);
-        weather.setCurrentWeather(data.currentWeather);
-        weather.setForecast(data.forecast);
+        const data = await WeatherService.fetchWeatherAndForecast(locations);
+        if (!data) return;
+        weather.setCurrentLocation(data.locationData);
+        weather.setCurrentWeather(data.currentWeatherData[0]);
+        weather.setForecast(data.forecastData);
     };
 
     return (
@@ -35,10 +33,10 @@ const SearchBar = () => {
                     className='search-bar-input'
                     list='locations'
                     lang='en'
-                    pattern='[A-Za-z\s]*'
+                    pattern="[A-Za-z\s,.']*"
                 ></input>
                 <datalist id='locations'>
-                    {locations.map((location: Location, index: number) => {
+                    {locations.map((location: ILocation, index: number) => {
                         const value =
                             location.LocalizedName +
                             ',' +

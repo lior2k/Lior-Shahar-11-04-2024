@@ -46,7 +46,10 @@ const NavigationBar: React.FC = () => {
                                 isActive('/favorites') ? 'active-nav-link' : ''
                             }`}
                         >
-                            <Icon icon='arcticons:weather-forecast'></Icon>
+                            <Icon
+                                icon='arcticons:weather-forecast'
+                                className='icon'
+                            ></Icon>
                         </Link>
                     </li>
                 </ul>
