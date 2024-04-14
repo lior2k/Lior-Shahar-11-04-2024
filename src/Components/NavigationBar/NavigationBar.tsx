@@ -13,6 +13,16 @@ const NavigationBar: React.FC = () => {
 
     return (
         <header>
+            <Icon
+                className='mobile-nav-toggle'
+                onClick={() => setIsNavOpen(!isNavOpen)}
+                icon={
+                    isNavOpen
+                        ? 'material-symbols-light:close'
+                        : 'fluent:navigation-16-regular'
+                }
+            ></Icon>
+
             <nav>
                 <ul
                     data-visible={isNavOpen}
@@ -21,7 +31,7 @@ const NavigationBar: React.FC = () => {
                     <li>
                         <Link
                             to='/'
-                            className={`nav-link ${
+                            className={`text-glow nav-link ${
                                 isActive('/') ? 'active-nav-link' : ''
                             }`}
                         >
@@ -31,7 +41,7 @@ const NavigationBar: React.FC = () => {
                     <li>
                         <Link
                             to='/favorites'
-                            className={`nav-link ${
+                            className={`text-glow nav-link ${
                                 isActive('/favorites') ? 'active-nav-link' : ''
                             }`}
                         >

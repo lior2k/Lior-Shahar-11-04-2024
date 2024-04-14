@@ -37,9 +37,9 @@ const Home = () => {
 
             <main>
                 <SearchBar />
-                <div className='component-wrapper main-content'>
+                <div className='main-content'>
                     <div className='top-section component-wrapper flex'>
-                        <div className='flex'>
+                        <div className='flex mobile-to-column'>
                             <Icon icon='mdi:weather-cloudy' className='icon' />
                             <div className='flex column'>
                                 <span>
@@ -61,7 +61,7 @@ const Home = () => {
                             className='text-glow'
                             onClick={() => handleFavoritesToggle()}
                         >
-                            <span className='flex align-center'>
+                            <span className='flex align-center mobile-to-column'>
                                 {isSaved
                                     ? 'Remove from Favorites'
                                     : 'Save to Favorites'}
