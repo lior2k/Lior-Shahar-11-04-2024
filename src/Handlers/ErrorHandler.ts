@@ -22,7 +22,7 @@ export const errorHandler = (err: unknown) => {
             toast.error('Server Error');
             break;
         default:
-            toast.error('Unexpected Error');
+            toast.error('503 Rate Limit Exceeded, Try again tommorow :(');
             break;
     }
 };
