@@ -1,46 +1,37 @@
-# Getting Started with Create React App
+# Abra W&M Home Assignment
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Weather App
 
-## Available Scripts
+This is a simple, responsive web application built in Angular/React to display weather information for various cities. Users can search for a city, view its current weather and 5-day forecast, and save their favorite locations locally without the need for a server.
 
-In the project directory, you can run:
+## Features
 
-### `npm start`
+-   Search Functionality: Users can search for a city by name to view its weather details.
+-   Favorite Locations: Users can save their favorite locations locally and easily access them.
+-   Responsive Design: The app is responsive and works well on various screen sizes.
+-   Error Handling: Error handling is implemented using toast notifications.
+-   Animations: Animations are added tastefully to enhance the user experience.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### Usage
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+-   Navigate to the main screen to search for a city and view its weather details.
+-   Save your favorite locations by clicking the "Add to Favorites" button.
+-   Access your favorite locations easily from the favorites screen.
 
-### `npm test`
+### How to Run
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+> You will need to create an AccuWeather account and change the API key in the Constants folder
+> Ideally this key should be hidden and stored in a seperate backend server, but for a simple app using a free API this is ok.
 
-### `npm run build`
+-   Clone this repository: [repo-link](https://github.com/lior2k/Lior-Shahar-11-04-2024.git)
+-   Install dependencies using npm install or yarn install.
+-   Run the application using npm start or yarn start.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Technologies Used
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+-   TypeScript
+-   React.js
+-   AccuWeather API
+-   CSS Flexbox
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+Thank you for reviewing my Weather App! If you have any feedback or questions, please feel free to reach out.

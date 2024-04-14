@@ -3,7 +3,7 @@ import { HTTP_RESPONSE_CODE } from '../Constants/Constants';
 import { toast } from 'react-toastify';
 
 export const errorHandler = (err: unknown) => {
-    console.log(err);
+    console.error(err);
     const error = err as HttpException;
     switch (error.status) {
         case HTTP_RESPONSE_CODE.BAD_REQUEST:
