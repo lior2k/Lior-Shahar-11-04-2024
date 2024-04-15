@@ -4,6 +4,11 @@ import axios from 'axios';
 import { URLS, AccuWeatherAPIKey } from '../Constants/Constants';
 import { toast } from 'react-toastify';
 
+// import locationData from '../Constants/TelAvivLocationExample.json';
+// import currentWeatherData from '../Constants/CurrentWeatherExample.json';
+// import forecastData from '../Constants/FiveDayForecastExample.json';
+// import autoCompleteExample from '../Constants/AutoCompleteResponseExample.json';
+
 export type WeatherData = {
     locationData: ILocation;
     currentWeatherData: ICurrentWeather[];
@@ -11,35 +16,8 @@ export type WeatherData = {
 };
 
 export const WeatherService = {
-    fetchTelAviv: async (): Promise<WeatherData | undefined> => {
-        try {
-            // fetch tel aviv as default location and get the key to query tel aviv's current weather and forecast
-            const locationResponse = await axios.get(
-                `${URLS.LOCATION_AUTO_COMPLETE}?apikey=${AccuWeatherAPIKey}&q=Tel%20Aviv`
-            );
-            const locationData = locationResponse.data[0];
-
-            // use tel aviv's key to query and set the current weather
-            const weatherResponse = await axios.get(
-                `${URLS.CURRENT_WEATHER}/${locationData.Key}?apikey=${AccuWeatherAPIKey}`
-            );
-            const currentWeatherData = weatherResponse.data;
-
-            // use tel aviv's key to query and set the forecast
-            const forecastResponse = await axios.get(
-                `${URLS.FIVE_DAY_FORECAST}/${locationData.Key}?apikey=${AccuWeatherAPIKey}`
-            );
-            const forecastData = forecastResponse.data;
-
-            return { locationData, currentWeatherData, forecastData };
-        } catch (err) {
-            errorHandler(err);
-        }
-    },
-
     fetchAutoComplete: async (
-        searchParam: string,
-        setLocations: React.Dispatch<React.SetStateAction<ILocation[]>>
+        searchParam: string
     ): Promise<ILocation[] | undefined> => {
         if (searchParam === '') {
             return;
@@ -48,7 +26,8 @@ export const WeatherService = {
             const response = await axios.get(
                 `${URLS.LOCATION_AUTO_COMPLETE}?apikey=${AccuWeatherAPIKey}&q=${searchParam}`
             );
-            setLocations((previousLocations) => [...response.data]);
+            return response.data;
+            // return autoCompleteExample;
         } catch (err) {
             errorHandler(err);
         }
@@ -63,6 +42,7 @@ export const WeatherService = {
             );
             const currentWeather = currentWeatherResponse.data;
             return currentWeather;
+            // return currentWeatherData;
         } catch (err) {
             errorHandler(err);
         }

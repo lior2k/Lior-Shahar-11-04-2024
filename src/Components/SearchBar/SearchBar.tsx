@@ -10,16 +10,24 @@ const SearchBar = () => {
     const weather = useWeather();
 
     useEffect(() => {
-        WeatherService.fetchAutoComplete(searchParam, setLocations);
+        const fetchLocationsList = async () => {
+            const locationsList = await WeatherService.fetchAutoComplete(
+                searchParam
+            );
+            if (locationsList) setLocations(locationsList);
+        };
+
+        fetchLocationsList();
     }, [searchParam]);
 
     const handleSearch = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        const data = await WeatherService.fetchWeatherAndForecast(locations);
-        if (!data) return;
-        weather.setCurrentLocation(data.locationData);
-        weather.setCurrentWeather(data.currentWeatherData[0]);
-        weather.setForecast(data.forecastData);
+        const weatherServiceResponse =
+            await WeatherService.fetchWeatherAndForecast(locations);
+        if (!weatherServiceResponse) return;
+        weather.setCurrentLocation(weatherServiceResponse.locationData);
+        weather.setCurrentWeather(weatherServiceResponse.currentWeatherData[0]);
+        weather.setForecast(weatherServiceResponse.forecastData);
     };
 
     return (

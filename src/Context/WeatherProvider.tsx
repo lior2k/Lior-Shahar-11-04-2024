@@ -36,11 +36,14 @@ const WeatherProvider = ({ children }: WeatherProviderProps) => {
 
     useEffect(() => {
         const setData = async () => {
-            // on initial app launch fetch tel aviv by default and set it as current location
+            /* on initial app launch fetch tel aviv by default and set it as current location
+            since location is in the dependency array, useeffect will be called again to fetch
+            and the forecast as well */
             let data;
             if (currentLocation === null) {
-                data = await WeatherService.fetchTelAviv();
-                if (data) setCurrentLocation(data.locationData);
+                data = await WeatherService.fetchAutoComplete('Tel Aviv');
+                if (data) setCurrentLocation(data[0]);
+                return;
             }
             // on navigation from favorite page - fetch the weather and forecast of the chosen location
             else {

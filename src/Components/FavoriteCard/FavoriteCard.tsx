@@ -30,12 +30,16 @@ const FavoriteCard: React.FC<FavoriteCardInterface> = ({
         >
             <span>{location.LocalizedName}</span>
             <span>{location.Country.LocalizedName}</span>
-            <span>
-                {currentWeather?.Temperature?.Metric.Value +
-                    ' ' +
-                    currentWeather?.Temperature?.Metric.Unit}
-            </span>
-            <span>{currentWeather?.WeatherText}</span>
+            {currentWeather && (
+                <>
+                    <span>
+                        {currentWeather?.Temperature?.Metric.Value +
+                            ' ' +
+                            currentWeather?.Temperature?.Metric.Unit}
+                    </span>
+                    <span>{currentWeather?.WeatherText}</span>
+                </>
+            )}
         </div>
     );
 };

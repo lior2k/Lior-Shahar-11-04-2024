@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/Lior-Shahar-11-04-2024/static/css/main.2cafc092.css",
-    "main.js": "/Lior-Shahar-11-04-2024/static/js/main.761cf8a5.js",
+    "main.js": "/Lior-Shahar-11-04-2024/static/js/main.69b707c9.js",
     "static/media/weatherBG3.jpg": "/Lior-Shahar-11-04-2024/static/media/weatherBG3.264db959d9d15c444ff8.jpg",
     "index.html": "/Lior-Shahar-11-04-2024/index.html",
     "main.2cafc092.css.map": "/Lior-Shahar-11-04-2024/static/css/main.2cafc092.css.map",
-    "main.761cf8a5.js.map": "/Lior-Shahar-11-04-2024/static/js/main.761cf8a5.js.map"
+    "main.69b707c9.js.map": "/Lior-Shahar-11-04-2024/static/js/main.69b707c9.js.map"
   },
   "entrypoints": [
     "static/css/main.2cafc092.css",
-    "static/js/main.761cf8a5.js"
+    "static/js/main.69b707c9.js"
   ]
 }
