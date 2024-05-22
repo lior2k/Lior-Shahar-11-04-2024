@@ -41,7 +41,7 @@ const Home = () => {
         };
 
         setInitialValues();
-    });
+    }, [dispatch]);
 
     useEffect(() => {
         if (!weather.location) return;
