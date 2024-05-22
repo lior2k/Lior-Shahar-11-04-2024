@@ -2,12 +2,17 @@ import { useState, useEffect } from 'react';
 import './SearchBar.css';
 import { ILocation } from '../../Interfaces';
 import { WeatherService } from '../../Services/WeatherService';
-import { useWeather } from '../../Hooks/useWeather';
+import {
+    setLocation,
+    setCurrentWeather,
+    setForecast,
+} from '../../Features/Weather/WeatherSlice';
+import { useAppDispatch } from '../../Store/Store';
 
 const SearchBar = () => {
     const [searchParam, setSearchParam] = useState<string>('');
     const [locations, setLocations] = useState<ILocation[]>([]);
-    const weather = useWeather();
+    const dispatch = useAppDispatch();
 
     useEffect(() => {
         const fetchLocationsList = async () => {
@@ -25,9 +30,11 @@ const SearchBar = () => {
         const weatherServiceResponse =
             await WeatherService.fetchWeatherAndForecast(locations);
         if (!weatherServiceResponse) return;
-        weather.setCurrentLocation(weatherServiceResponse.locationData);
-        weather.setCurrentWeather(weatherServiceResponse.currentWeatherData[0]);
-        weather.setForecast(weatherServiceResponse.forecastData);
+        dispatch(setLocation(weatherServiceResponse.locationData));
+        dispatch(
+            setCurrentWeather(weatherServiceResponse.currentWeatherData[0])
+        );
+        dispatch(setForecast(weatherServiceResponse.forecastData));
     };
 
     return (

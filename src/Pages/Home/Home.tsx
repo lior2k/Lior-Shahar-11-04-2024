@@ -3,30 +3,57 @@ import NavigationBar from '../../Components/NavigationBar/NavigationBar';
 import SearchBar from '../../Components/SearchBar/SearchBar';
 import Card from '../../Components/Card/Card';
 import { Icon } from '@iconify/react';
-
-import { useState, useEffect } from 'react';
-import { useWeather } from '../../Hooks/useWeather';
-
 import { DailyForecast } from '../../Interfaces';
 
+import { useState, useEffect } from 'react';
+import { WeatherService } from '../../Services/WeatherService';
+import {
+    saveFavoriteLocation,
+    removeFavoriteLocation,
+} from '../../Features/Favorites/FavoritesSlice';
+import {
+    setLocation,
+    setCurrentWeather,
+    setForecast,
+} from '../../Features/Weather/WeatherSlice';
+import { useAppSelector, useAppDispatch } from '../../Store/Store';
+
 const Home = () => {
-    const weather = useWeather();
     const [isSaved, setIsSaved] = useState<boolean>(false);
 
+    const favorites = useAppSelector((state) => state.favorites);
+    const weather = useAppSelector((state) => state.weather);
+    const dispatch = useAppDispatch();
+
     useEffect(() => {
-        setIsSaved(
-            weather.favoriteLocations.hasOwnProperty(
-                weather.currentLocation?.Key as string
-            )
-        );
-    }, [weather]);
+        const setInitialValues = async () => {
+            const locationData = await WeatherService.fetchAutoComplete(
+                'Tel Aviv'
+            );
+            if (!locationData) return;
+            dispatch(setLocation(locationData[0]));
+            const weatherData = await WeatherService.fetchWeatherAndForecast([
+                locationData[0],
+            ]);
+            if (!weatherData) return;
+            dispatch(setCurrentWeather(weatherData.currentWeatherData[0]));
+            dispatch(setForecast(weatherData.forecastData));
+        };
+
+        setInitialValues();
+    });
+
+    useEffect(() => {
+        if (!weather.location) return;
+        setIsSaved(favorites.hasOwnProperty(weather.location.Key));
+    }, [favorites, weather]);
 
     const handleFavoritesToggle = () => {
-        if (!weather.currentLocation) return;
+        if (!weather.location) return;
         if (isSaved) {
-            weather.removeFavoriteLocation(weather.currentLocation.Key);
+            dispatch(removeFavoriteLocation(weather.location.Key));
         } else {
-            weather.saveFavoriteLocation(weather.currentLocation);
+            dispatch(saveFavoriteLocation(weather.location));
         }
         setIsSaved(!isSaved);
     };
@@ -42,9 +69,7 @@ const Home = () => {
                         <div className='flex mobile-to-column'>
                             <Icon icon='mdi:weather-cloudy' className='icon' />
                             <div className='flex column'>
-                                <span>
-                                    {weather.currentLocation?.LocalizedName}
-                                </span>
+                                <span>{weather.location?.LocalizedName}</span>
                                 {weather.currentWeather &&
                                     weather.currentWeather.Temperature && (
                                         <span>

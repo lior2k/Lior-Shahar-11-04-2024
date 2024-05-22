@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import { ILocation } from '../Interfaces';
 
+// NO LONGER IN USE DUE TO REPLACING CONTEXT WITH REDUX
+
 export interface favoriteLocationsInterface {
     // key signature
     [key: string]: ILocation;
@@ -40,7 +42,7 @@ const useFavoriteLocations = (): FavoriteLocationsHookResult => {
         const storedFavorites: favoriteLocationsInterface =
             localStorage.getItem('favorites') !== null
                 ? JSON.parse(localStorage.getItem('favorites') as string)
-                : [];
+                : {};
         setFavoriteLocations(storedFavorites);
     }, []);
 

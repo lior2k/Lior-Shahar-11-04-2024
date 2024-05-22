@@ -2,9 +2,10 @@ import './App.css';
 import Home from './Pages/Home/Home';
 import Favorites from './Pages/Favorites/Favorites';
 import { RouterProvider, createHashRouter } from 'react-router-dom';
-import WeatherProvider from './Context/WeatherProvider';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { store } from './Store/Store';
+import { Provider } from 'react-redux';
 
 const router = createHashRouter([
     { path: '/', element: <Home /> },
@@ -13,10 +14,10 @@ const router = createHashRouter([
 
 const App = () => {
     return (
-        <WeatherProvider>
+        <Provider store={store}>
             <RouterProvider router={router} />
             <ToastContainer />
-        </WeatherProvider>
+        </Provider>
     );
 };
 

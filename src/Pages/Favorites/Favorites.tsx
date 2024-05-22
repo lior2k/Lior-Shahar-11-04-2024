@@ -3,14 +3,16 @@ import NavigationBar from '../../Components/NavigationBar/NavigationBar';
 import FavoriteCard from '../../Components/FavoriteCard/FavoriteCard';
 import { ILocation } from '../../Interfaces';
 import { useNavigate } from 'react-router-dom';
-import { useWeather } from '../../Hooks/useWeather';
+import { useAppDispatch, useAppSelector } from '../../Store/Store';
+import { setLocation } from '../../Features/Weather/WeatherSlice';
 
 const Favorites = () => {
-    const weather = useWeather();
     const navigate = useNavigate();
+    const favorites = useAppSelector((state) => state.favorites);
+    const dispatch = useAppDispatch();
 
     const navigateHome = (location: ILocation) => {
-        weather.setCurrentLocation(location);
+        dispatch(setLocation(location));
         navigate('/');
     };
 
@@ -19,18 +21,16 @@ const Favorites = () => {
             <NavigationBar />
 
             <main>
-                {Object.keys(weather.favoriteLocations).length && (
+                {Object.keys(favorites).length && (
                     <div
                         className='component-wrapper flex cards-wrapper main-content'
                         style={{ marginBlockStart: '105px' }}
                     >
-                        {Object.keys(weather.favoriteLocations).map(
+                        {Object.keys(favorites).map(
                             (locationKey: string, index: number) => (
                                 <FavoriteCard
                                     key={index}
-                                    location={
-                                        weather.favoriteLocations[locationKey]
-                                    }
+                                    location={favorites[locationKey]}
                                     callback={(location: ILocation) =>
                                         navigateHome(location)
                                     }
